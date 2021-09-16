@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="final.camp">
+  
+  <select id="getListReviewBsnmSQL" parameterType="int" resultType="greencamp.review.model.ReviewDTO">
+  select * from tb_review where camp_no=#{camp_no}
+  </select>
+  
+  <update id="likesupSQL" parameterType="int">
+  update tb_bbs set likes=likes+1 where bbs_no=#{bbs_no}
+  </update>
+  
+  <update id="likesdownSQL" parameterType="int">
+  update tb_bbs set likes=likes-1 where bbs_no=#{bbs_no}
+  </update>
+  
+  <select id="showlikesnumber" parameterType="int" resultType="int">
+  select likes from tb_bbs where bbs_no=#{bbs_no}
+  </select>
+  
+  <select id="getlikebbsnumberSQL" parameterType="String" resultType="greencamp.like.model.LikeDTO">
+	select like_no from tb_like where like_ncnm=#{id}
+	</select>
+	<select id="findcampnobsnm" parameterType="String" resultType="int">
+	select camp_no from tb_camp where id=#{id}
+	</select>
+  
+  </mapper>

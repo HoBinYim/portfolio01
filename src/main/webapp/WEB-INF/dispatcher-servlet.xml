@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- configs -->
+	<context:component-scan base-package="greencamp"></context:component-scan>
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="1"></property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"></property>
+	</bean>
+
+	<!-- DAOs -->
+	<bean id="campDao" class="greencamp.camp.model.CampDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate" />
+		</constructor-arg>
+	</bean>
+	<bean id="reviewDao" class="greencamp.review.model.ReviewDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+
+	<bean id="sellingDao"
+		class="greencamp.selling.model.SellingDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+
+	<bean id="eventDao" class="greencamp.event.model.EventDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+
+	<bean id="messageDao"
+		class="greencamp.message.model.MessageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+
+	<bean id="memberDao" class="greencamp.member.model.MemberDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+
+	<bean id="likeDao" class="greencamp.like.model.LikeDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="ResveDao" class="greencamp.resve.model.ResveDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+	<!-- service -->
+	<bean id="goodsService"
+		class="greencamp.goods.service.GoodsServiceImple"></bean>
+	<bean id="commentService"
+		class="greencamp.comment.service.CommentServiceImple"></bean>
+	<bean id="reportService"
+		class="greencamp.report.service.ReportServiceImple"></bean>
+	<bean id="campinfoService"
+		class="greencamp.campinfo.service.CampInfoServiceImple"></bean>
+	<bean id="bbsService"
+		class="greencamp.bbs.service.BbsServiceImple"></bean>
+</beans>
